@@ -48,7 +48,17 @@ class Program
                         Funciones.Funciones.buscarTarea(TareasPendientes,textoIngresado,cantidadTareas);
                         break;
                     case 4:
-
+                        string rutaArchivo = "horasTrabajadas.txt";
+                        int horasTrabajadas=0;
+                        StreamWriter archivo = new StreamWriter(rutaArchivo,true); //true = para indicar que agregue al final del archivo, sino inicializa desde cero el archivo
+                        foreach (var tarea in TareasRealizadas)
+                        {
+                            horasTrabajadas += tarea.Duracion;
+                        }
+                        archivo.WriteLine("Horas totales trabajadas:"+horasTrabajadas);
+                        archivo.Close();
+                        Console.WriteLine("******* Horas guardadas correctamente *******");
+                        break;
                     case 5:
                         programaOn = false;
                         Console.WriteLine("****** Programa Finalizado ******");
