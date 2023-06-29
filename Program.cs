@@ -1,6 +1,7 @@
-﻿class Program
+﻿using System;
+internal class Program
 {
-    private static void Main(){
+    private static void Main(string[] args){
         string rutaCarpeta;
         do
         {
@@ -20,6 +21,18 @@
             }
 
             string rutaArchivo = "index.csv";
+
+            using (StreamWriter archivocsv = new StreamWriter(rutaArchivo))
+            {
+                archivocsv.WriteLine("Indice , Nombre, Extension");
+                for (int i = 0; i < archivosCarpeta.Length; i++)
+                {
+                    string nombreArchivo = Path.GetFileNameWithoutExtension(archivosCarpeta[i]);
+                    string extensionArchivo = Path.GetExtension(archivosCarpeta[i]);
+                    archivocsv.WriteLine((i+1)+ "," + nombreArchivo + "," + extensionArchivo);
+                }
+            }
+            
         }else
         {
             Console.WriteLine("Ruta incorrecta o carpeta inexistente");
